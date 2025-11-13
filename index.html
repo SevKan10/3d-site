@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G-Code Converter</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.png">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- ===== HEADER ===== -->
+    <header>
+        <h1>Bambu Lab A1 - Auto Eject & Loop Converter</h1>
+    </header>
+
+    <!-- ===== MAIN CONTAINER ===== -->
+    <main>
+        <!-- ===== UPLOAD SECTION ===== -->
+        <section class="upload-section">
+            <h2>Select .gcode.3mf File</h2>
+            
+            <div id="dragDropZone">
+                <p style="font-size: 24px; margin-bottom: 10px;">📂</p>
+                <p><strong>Click to select file or drag & drop</strong></p>
+                <p style="font-size: 12px; color: #7F8C8D;">Support: .gcode.3mf, .3mf (Max 100MB)</p>
+            </div>
+
+            <div class="file-info error">❌ No file selected</div>
+            <input type="file" id="fileInput" accept=".gcode.3mf,.3mf,.zip">
+        </section>
+
+        <!-- ===== SETTINGS SECTION ===== -->
+        <section class="settings-section">
+            <h2>Processing Settings</h2>
+
+            <!-- Setting 1: Enable Eject -->
+            <div class="setting-group">
+                <label>
+                    <input type="checkbox" id="enableEject" checked>
+                    ✓ Enable Eject Routine (auto eject print)
+                </label>
+                <div class="setting-info">
+                    └─ Nozzle ejects print: raise head → nozzle scrape 3x → lower deep
+                </div>
+            </div>
+
+            <!-- Setting 2: Repeat Count -->
+            <div class="setting-group">
+                <label>🔄 Loop Count (repeat print):</label>
+                <div style="display: flex; gap: 5px; align-items: center;">
+                    <input type="number" id="repeatCount" value="1" min="1" max="100" step="1">
+                    <span>times</span>
+                </div>
+                <div class="setting-info">
+                    • If > 1: Each loop includes eject routine<br>
+                    • 2s delay between loops
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== PROCESS SECTION ===== -->
+        <section class="process-section">
+            <h2>Process & Export</h2>
+
+            <div class="progress-bar">
+                <div class="progress-fill">0%</div>
+            </div>
+
+            <div class="status-label info">📊 Ready to process</div>
+
+            <div class="button-group">
+                <button id="processBtn" disabled>⚡ PROCESS FILE</button>
+                <button id="downloadBtn" class="btn-download">📂 DOWNLOAD FILE</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <p>&copy; 2025 TEKNIX TECHNOLOGY CORPORATION </p>
+    </footer>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script src="script.js"></script>
+</body>
+</html>
